@@ -10,7 +10,7 @@
   assign rows = 'top,bottom' | split: ','
   assign search_style = 'modal'
 
-  assign sticky = false
+  assign sticky = 'scroll-up'
   assign transparent = 'always'
 
 
@@ -87,6 +87,7 @@
     sticky="{{ sticky }}"
   {% endif %}
   data-skip-node-update
+  data-scroll-direction="up"
 >
   {% for row in rows %}
       {% liquid
@@ -235,6 +236,32 @@
 
   .header-section {
     position: relative;
+  }
+
+  #header-group:has(#header-component[sticky]) {
+    display: contents;
+  }
+
+  .header-section:has(> #header-component[sticky='always']),
+  .header-section:has(> #header-component[sticky='scroll-up'][data-sticky-state='active']) {
+    position: sticky;
+    /* Use -1 instead of 0 so intersection observer can track sticky state */
+    top: -1px;
+    z-index: var(--layer-sticky);
+  }
+
+  .header[data-sticky-state] {
+    transition: opacity var(--animation-speed) var(--animation-easing);
+    opacity: 1;
+  }
+
+  .header[data-sticky-state='active'] {
+    view-transition-name: sticky-header;
+  }
+
+  .header[data-sticky-state='idle'],
+  .header[data-sticky-state='active'][data-animating] {
+    opacity: 0;
   }
 
 
