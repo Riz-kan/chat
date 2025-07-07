@@ -11,7 +11,7 @@
   assign search_style = 'modal'
 
   assign sticky = 'scroll-up'
-  assign transparent = 'always'
+  assign transparent = 'not-sticky'
 
 
   capture logo
@@ -177,6 +177,7 @@
     background-color: transparent;
     z-index: var(--layer-overlay);
 
+    &[transparent='not-sticky'][data-sticky-state='active'],
     &:has(
         .header__row:hover,
         .mega-menu__list:is(:hover),
@@ -203,7 +204,8 @@
   }
 
   :is(
-      .header[transparent],
+      .header[transparent]:not([data-sticky-state='active']),
+      .header[transparent='always'][data-sticky-state='active'],
       .account-popover[open],
       .localization-wrapper:not([hidden])
     )
