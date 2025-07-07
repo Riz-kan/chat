@@ -10,8 +10,8 @@
   assign rows = 'top,bottom' | split: ','
   assign search_style = 'modal'
 
-  assign sticky = 'always'
-  assign transparent = nil
+  assign sticky = 'scroll-up'
+  assign transparent = 'always'
 
 
   capture logo
@@ -80,7 +80,7 @@
     sticky="{{ sticky }}"
   {% endif %}
   data-skip-node-update
-  data-scroll-direction="none"
+  data-scroll-direction="up"
 >
   {% for row in rows %}
       {% liquid
