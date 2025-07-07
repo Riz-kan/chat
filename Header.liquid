@@ -48,15 +48,15 @@
   endcapture
 
   capture menu
-    content_for 'block', type: '_header-menu', id: 'header-menu'
+    render 'header-menu'
   endcapture
 
   capture mobile_menu
-    content_for 'block', type: '_header-menu', id: 'header-menu', variant: 'mobile'
+    render 'header-menu'
   endcapture
 
   capture navigation_bar
-    content_for 'block', type: '_header-menu', id: 'header-menu', variant: 'navigation_bar', transparent: transparent
+    render 'header-menu'
   endcapture
 
   capture actions
@@ -569,6 +569,38 @@
     .sticky-content {
       margin-top: calc(var(--header-height) * -1);
     }
+  }
+
+  .header-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 1rem;
+  }
+
+  .header-menu li {
+    position: relative;
+  }
+
+  .header-menu .submenu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: var(--color-background, #fff);
+    list-style: none;
+    padding: 0.5rem 0;
+    margin: 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  .header-menu .submenu li {
+    padding: 0.25rem 1rem;
+  }
+
+  .header-menu .has-submenu:hover > .submenu {
+    display: block;
   }
 {% endstylesheet %}
 
