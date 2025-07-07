@@ -168,8 +168,9 @@
   }
 </script>
 
-<header-component
-  id="header-component"
+<header class="header-section">
+  <header-component
+    id="header-component"
   class="{{ class }}"
   {% if transparent %}
     transparent="{{ transparent }}"
@@ -249,6 +250,7 @@
     </div>
   {% endif %}
 </header-component>
+</header>
 
 <script
   src="{{ 'header.js' | asset_url }}"
