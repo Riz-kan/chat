@@ -46,8 +46,15 @@
     render 'search', class: 'desktop:hidden', style: search_style
   endcapture
 
-  assign show_language = localization.available_languages.size > 1
-  assign show_country = localization.available_countries.size > 1
+  assign show_language = false
+  if localization.available_languages.size > 1
+    assign show_language = true
+  endif
+
+  assign show_country = false
+  if localization.available_countries.size > 1
+    assign show_country = true
+  endif
 
   if show_country or show_language
     capture localization_markup
